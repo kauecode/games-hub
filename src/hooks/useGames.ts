@@ -36,7 +36,7 @@ const useGames = () => {
         setIsLoading(false)
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
         if (err instanceof CanceledError) return
         setError(err.message)
         setIsLoading(false)
