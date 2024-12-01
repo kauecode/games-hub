@@ -1,5 +1,5 @@
 import './App.css'
-import { Button, ButtonGroup, Grid, GridItem, Show, Stack } from '@chakra-ui/react'
+import { Button, ButtonGroup, Grid, GridItem, HStack, Show, Stack } from '@chakra-ui/react'
 import NavBar from './components/NavBar'
 import GameGrid from './components/GameGrid'
 import GenreList from './components/GenreList'
@@ -7,10 +7,12 @@ import { useState } from 'react'
 import { Genre } from './hooks/useGenres'
 import { Platform } from './hooks/usePlatforms'
 import PlatformSelector from './components/PlatformSelector'
+import SortSelector from './components/SortSelector'
 
 export interface GameQuery {
   genre: Genre | null,
-  platform: Platform | null
+  platform: Platform | null,
+  ordering: string | null
 }
 
 function App() {
@@ -37,11 +39,14 @@ function App() {
           <GridItem padding={5} area="aside">
             <GenreList setGenre={(g:Genre) => setGameQuery({...gameQuery, genre: g})} selectedGenre={gameQuery.genre}/>
             {/* Could use short hand here and let TS infer the type: */}
-            {/* (genre) => setGameQuery({...gameQuery, genre}) */}            
+            {/* (genre) => setGameQuery({...gameQuery, genre}) */}                        
           </GridItem>
         </Show>
         <GridItem area="main">
-          <PlatformSelector setSelectedPlatform={(p:Platform) => setGameQuery({...gameQuery, platform: p})} selectedPlatform={gameQuery.platform} />
+          <HStack padding={5} spacing={5}>
+            <PlatformSelector setSelectedPlatform={(p:Platform) => setGameQuery({...gameQuery, platform: p})} selectedPlatform={gameQuery.platform} />
+            <SortSelector selectedOrder={gameQuery.ordering} sortOrder={(ordering) => setGameQuery({...gameQuery, ordering })} />
+          </HStack>
           <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
