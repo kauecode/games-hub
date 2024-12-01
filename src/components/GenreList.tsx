@@ -24,7 +24,7 @@ const GenreList = ({setGenre, selectedGenre} : GenreListProps) => {
             <HStack>
               <Image boxSize={10} borderRadius={10} src={resizeImg(genre.image_background)}/>
               <Button 
-                fontWeight={selectedGenre?.id === genre.id && 'extrabold'}
+                fontWeight={selectedGenre?.id === genre.id ? 'extrabold' : 'normal'}
                 variant={'link'} fontSize={'lg'}
                 onClick={() => setGenre(genre)}
                 >

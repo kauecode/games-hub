@@ -15,7 +15,7 @@ const GameCard = ({ game } : GameCardProps) => {
 
   return (
     <Card>
-      <Image src={resizeImg(game.background_image)}/>
+      {game.background_image && <Image src={resizeImg(game.background_image)}/>}
       <CardBody>
         <Heading fontSize={'2xl'}>{game.name}</Heading>
         <HStack justifyContent="space-between">
