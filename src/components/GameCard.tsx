@@ -3,7 +3,8 @@ import { Game } from '../hooks/useGames'
 import { Card, CardBody, Heading, HStack, Image } from '@chakra-ui/react'
 import PlatformIconList from './PlatformIconList'
 import GameScore from './GameScore'
-import resizeImg from '../utils/image-url'
+import ImageNotFound from '../../public/image-not-found.png'
+import resizeImg from '../utils/image-resize'
 
 interface GameCardProps {
   game: Game
@@ -15,7 +16,12 @@ const GameCard = ({ game } : GameCardProps) => {
 
   return (
     <Card>
-      {game.background_image && <Image src={resizeImg(game.background_image)}/>}
+      <Image
+        src={resizeImg(game.background_image)} 
+        height="180px"
+        objectFit="cover" 
+        fallbackSrc={ImageNotFound}
+        alt={'Game Card Image for ' + game.name}/>
       <CardBody>
         <Heading fontSize={'2xl'}>{game.name}</Heading>
         <HStack justifyContent="space-between">
