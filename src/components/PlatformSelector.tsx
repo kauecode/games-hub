@@ -5,7 +5,7 @@ import usePlatforms, { Platform } from '../hooks/usePlatforms'
 
 interface PlatformSelectorProps {
   selectedPlatform: Platform | null,
-  setSelectedPlatform:  (p: Platform) => void
+  setSelectedPlatform:  (q: Platform) => void
 }
 
 const PlatformSelector = ( {selectedPlatform, setSelectedPlatform} : PlatformSelectorProps ) => {

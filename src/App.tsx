@@ -8,10 +8,15 @@ import { Genre } from './hooks/useGenres'
 import { Platform } from './hooks/usePlatforms'
 import PlatformSelector from './components/PlatformSelector'
 
+export interface GameQuery {
+  genre: Genre | null,
+  platform: Platform | null
+}
+
 function App() {
 
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+  // Query Obj Pattern
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
 
   return (
     <>
@@ -30,12 +35,14 @@ function App() {
         </GridItem>
         <Show above="lg">
           <GridItem padding={5} area="aside">
-            <GenreList setGenre={setSelectedGenre} selectedGenre={selectedGenre}/>
+            <GenreList setGenre={(g:Genre) => setGameQuery({...gameQuery, genre: g})} selectedGenre={gameQuery.genre}/>
+            {/* Could use short hand here and let TS infer the type: */}
+            {/* (genre) => setGameQuery({...gameQuery, genre}) */}            
           </GridItem>
         </Show>
         <GridItem area="main">
-          <PlatformSelector setSelectedPlatform={setSelectedPlatform} selectedPlatform={selectedPlatform} />
-          <GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform} />
+          <PlatformSelector setSelectedPlatform={(p:Platform) => setGameQuery({...gameQuery, platform: p})} selectedPlatform={gameQuery.platform} />
+          <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
     </>
