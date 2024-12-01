@@ -1,7 +1,7 @@
 import React from 'react'
 import useGenres, { Genre } from '../hooks/useGenres';
 import { HStack, List, ListItem, Image, Text, Spinner, Button } from '@chakra-ui/react';
-import resizeImg from '../utils/image-url';
+import resizeImg from '../utils/image-resize';
 
 interface GenreListProps {
   setGenre: (g:Genre) => void,
