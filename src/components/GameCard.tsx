@@ -5,6 +5,7 @@ import PlatformIconList from './PlatformIconList'
 import GameScore from './GameScore'
 import ImageNotFound from '../../public/image-not-found.png'
 import resizeImg from '../utils/image-resize'
+import Emojis from './Emojis'
 
 interface GameCardProps {
   game: Game
@@ -12,10 +13,8 @@ interface GameCardProps {
 
 const GameCard = ({ game } : GameCardProps) => {
 
-  // console.log(game.parent_platforms);
-
   return (
-    <Card>
+    <Card overflow='hidden' variant={'filled'}>
       <Image
         src={resizeImg(game.background_image)} 
         height="180px"
@@ -23,11 +22,13 @@ const GameCard = ({ game } : GameCardProps) => {
         fallbackSrc={ImageNotFound}
         alt={'Game Card Image for ' + game.name}/>
       <CardBody>
-        <Heading fontSize={'2xl'}>{game.name}</Heading>
         <HStack justifyContent="space-between">
-          <PlatformIconList platforms={game.parent_platforms.map(platform => platform.platform)} />
+          {game.parent_platforms &&
+            <PlatformIconList platforms={game.parent_platforms.map(platform => platform.platform)} />}
           <GameScore score={game.metacritic} />
-        </HStack>
+        </HStack>        
+        <Heading paddingY={5} fontSize={'2xl'}>{game.name}</Heading>          
+        <Emojis rating={game.rating_top} />
       </CardBody>
     </Card>
   )

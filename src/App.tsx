@@ -19,7 +19,7 @@ export interface GameQuery {
 
 function App() {
 
-  // Query Obj Pattern
+  // #Todo: Query Obj Pattern, need to put this in a context/reducer later
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
 
   return (
@@ -35,7 +35,7 @@ function App() {
       }}
       >
         <GridItem area="nav">
-          <NavBar onSearch={(s:string) => setGameQuery({...gameQuery, search: s})} />
+          <NavBar gameQuery={gameQuery} onSearch={(s:string) => setGameQuery({...gameQuery, search: s})} />
         </GridItem>
         <Show above="lg">
           <GridItem padding={5} area="aside">

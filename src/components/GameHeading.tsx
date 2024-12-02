@@ -8,7 +8,10 @@ interface GameHeadingProps {
 
 const GameHeading = ( { gameQuery } : GameHeadingProps ) => {
 
-  const heading = `${gameQuery.platform?.name || ""} ${gameQuery.genre?.name || ""} Games`
+  const heading = 
+    (gameQuery.search ? `Searching for "${gameQuery.search}" in ` : "")
+    + `${gameQuery.platform?.name || ""} ${gameQuery.genre?.name || ""} Games`
+
 
   //#TODO : Account for search string
 
