@@ -4,7 +4,11 @@ import ColorModeSwitch from './ColorModeSwitch'
 import SearchInput from './SearchInput'
 import Logo from './Logo'
 
-const NavBar = () => {
+interface NavBarProps {
+  onSearch: (s:string) => void
+}
+
+const NavBar = ({onSearch} : NavBarProps) => {
 
   const {colorMode} = useColorMode()    
 
@@ -14,7 +18,7 @@ const NavBar = () => {
         <Link href="/" aria-label="Home">
           <Logo color={colorMode === "dark" ? "#f5f5f5f0" : "#000000de"}/>
         </Link>
-        <SearchInput/>
+        <SearchInput onSearch={onSearch}/>
         <ColorModeSwitch />
       </HStack>
     </>

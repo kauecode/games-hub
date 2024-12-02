@@ -12,7 +12,7 @@ const GenreList = ({setGenre, selectedGenre} : GenreListProps) => {
 
   const { data, error, isLoading } = useGenres();
 
-  // Add skeleton, add global error
+  // #Todo: Add skeleton, add global error
 
   return (
     <>
