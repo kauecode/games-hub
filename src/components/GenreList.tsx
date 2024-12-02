@@ -3,6 +3,7 @@ import useGenres, { Genre } from '../hooks/useGenres';
 import { HStack, List, ListItem, Image, Text, Spinner, Button, Heading } from '@chakra-ui/react';
 import resizeImg from '../utils/image-resize';
 import { GameAppError } from '../App';
+import GenreListSkeleton from './GenreListSkeleton';
 
 interface GenreListProps {
   setGenre: (g:Genre) => void,
@@ -19,13 +20,11 @@ const GenreList = ({setGenre, selectedGenre, setError} : GenreListProps) => {
       setError({message: error, description: "Genre selection will not be available"})
   }, [error])  
 
-  // #Todo: Add skeleton, add global error
-
   return (
     <>
       <Heading fontSize={'2xl'} paddingBottom={2}>Genres</Heading>
       <List>
-        {isLoading && <Spinner />}
+        {isLoading && <GenreListSkeleton numberOfItems={20} />}
         {data.map((genre) => 
           <ListItem key={genre.id} paddingY={2}>
             <HStack>
