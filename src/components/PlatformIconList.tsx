@@ -1,10 +1,12 @@
 import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from 'react-icons/fa';
 import { MdPhoneIphone } from 'react-icons/md';
-import { SiNintendo } from 'react-icons/si';
+import { SiAtari, SiNintendo, SiSega } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
 import { Platforms } from '../hooks/useGames'
-import { HStack, Icon } from '@chakra-ui/react';
+import { HStack, Icon, VisuallyHidden } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
+import { HiDesktopComputer } from "react-icons/hi";
+
 
 interface PlatformIconListProps {
   platforms: Platforms[]
@@ -24,14 +26,27 @@ const PlatformIconList = ( {platforms } : PlatformIconListProps) => {
     linux: FaLinux,
     ios: MdPhoneIphone,
     web: BsGlobe,
-    android: FaAndroid
+    android: FaAndroid,
+    sega: SiSega,
+    "3do" : SiSega,
+    atari : SiAtari,
+    "commodore-amiga" : HiDesktopComputer
+
   }
 
   return (
     <>
       <HStack>
       {platforms.map((platform) => 
-        <Icon boxSize={5} color="gray.500" key={platform.id} as={iconMap[platform.slug]} data-name={platform.slug}/>
+        <Icon 
+          boxSize={6} 
+          color="gray.500" 
+          key={platform.id} 
+          as={iconMap[platform.slug]} 
+          title={platform.name}
+          aria-label={`Icon for ${platform.name}`}>
+            <VisuallyHidden>Icon for {platform.name}</VisuallyHidden>
+        </Icon>
       )}
       </HStack>
     </>

@@ -6,7 +6,7 @@ import { GameAppError } from '../App'
 
 interface PlatformSelectorProps {
   selectedPlatform: Platform | null,
-  setSelectedPlatform:  (q: Platform) => void
+  setSelectedPlatform:  (q: Platform | null) => void
   setError: ({} : GameAppError) => void
 }
 
@@ -28,7 +28,17 @@ const PlatformSelector = ( {selectedPlatform, setSelectedPlatform, setError} : P
       {selectedPlatform?.name || "Select Platform"}
       </MenuButton>
       <MenuList>
-          {data.map((platform) => <MenuItem onClick={() => setSelectedPlatform(platform)} key={platform.id}>{platform.name}</MenuItem>)}
+          <MenuItem 
+            onClick={() => setSelectedPlatform(null)}>
+            All Platforms
+            </MenuItem>        
+          {data.map((platform) => 
+            <MenuItem 
+              onClick={() => setSelectedPlatform(platform)} 
+              key={platform.id}>
+              {platform.name}
+            </MenuItem>
+          )}
       </MenuList>
     </Menu>
     </>
