@@ -48,7 +48,7 @@ function App() {
           <NavBar gameQuery={gameQuery} onSearch={(s:string) => setGameQuery({...gameQuery, search: s})} />
         </GridItem>
         <Show above="lg">
-          <GridItem padding={5} area="aside">
+          <GridItem as="aside" padding={5} area="aside">
             <GenreList 
               setError={(errorObj) => setGlobalError([...globalError, errorObj])} 
               setGenre={(g:Genre) => setGameQuery({...gameQuery, genre: g})} 
@@ -59,7 +59,7 @@ function App() {
             {/* Not sure what I prefer, decide later */}
           </GridItem>
         </Show>
-        <GridItem area="main">
+        <GridItem as="main" area="main">
           <GameHeading gameQuery={gameQuery}/>
           <HStack padding={5} spacing={5}>            
             <PlatformSelector 

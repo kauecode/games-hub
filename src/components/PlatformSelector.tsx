@@ -24,7 +24,7 @@ const PlatformSelector = ( {selectedPlatform, setSelectedPlatform, setError} : P
   return (
     <>
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown/>}>
+      <MenuButton as={Button} rightIcon={<BsChevronDown tabIndex={-1}/>}>
       {selectedPlatform?.name || "Select Platform"}
       </MenuButton>
       <MenuList>
