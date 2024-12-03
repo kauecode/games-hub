@@ -1,4 +1,3 @@
-import React from 'react'
 import Excellent from '../assets/excellent.png'
 import ThumbsUP from '../assets/thumbs-up.png'
 import Meh from '../assets/meh.webp'

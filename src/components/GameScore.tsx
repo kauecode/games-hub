@@ -1,4 +1,3 @@
-import React from 'react'
 import { Badge, Box } from '@chakra-ui/react';
 
 interface GameCardProps {

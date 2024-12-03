@@ -1,4 +1,3 @@
-import React from 'react'
 import { Game } from '../hooks/useGames'
 import { Card, Text, CardBody, Heading, HStack, Image, Link, textDecoration } from '@chakra-ui/react'
 import PlatformIconList from './PlatformIconList'
@@ -6,9 +5,7 @@ import GameScore from './GameScore'
 import ImageNotFound from '../../public/image-not-found.png'
 import resizeImg from '../utils/image-resize'
 import Emojis from './Emojis'
-import { motion, AnimatePresence } from "framer-motion";
-import { RxOpenInNewWindow } from "react-icons/rx";
-
+import { motion } from "framer-motion";
 
 interface GameCardProps {
   game: Game

@@ -6,8 +6,6 @@ import { Platforms } from '../hooks/useGames'
 import { HStack, Icon, VisuallyHidden } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import { HiDesktopComputer } from "react-icons/hi";
-import { wrap } from 'framer-motion';
-
 
 interface PlatformIconListProps {
   platforms: Platforms[]

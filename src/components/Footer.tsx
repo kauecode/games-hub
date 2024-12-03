@@ -1,10 +1,8 @@
-import { Box, Image, Heading, HStack, Link, Text } from '@chakra-ui/react'
-import React from 'react'
-import { FaCanadianMapleLeaf, FaGithub, FaReact } from 'react-icons/fa'
+import { Box, Heading, HStack, Link, Text } from '@chakra-ui/react'
+import { FaCanadianMapleLeaf, FaReact } from 'react-icons/fa'
 import { SiChakraui, SiFramer, SiVite } from 'react-icons/si'
 import { BiLogoTypescript } from "react-icons/bi";
 import Logo from './Logo';
-
 
 const Footer = () => {
   return (
@@ -27,8 +25,7 @@ const Footer = () => {
           href="https://vitejs.dev/" 
           isExternal 
           aria-label="Learn more about Vite" 
-          title="Vite"
-        >
+          title="Vite">
           <SiVite fontSize={28} />
         </Link>
         <Text> + </Text>
@@ -36,8 +33,7 @@ const Footer = () => {
           href="https://www.typescriptlang.org/" 
           isExternal 
           aria-label="Learn more about TypeScript" 
-          title="TypeScript"
-        >
+          title="TypeScript">
           <BiLogoTypescript fontSize={35} />
         </Link>
         <Text> + </Text>        
@@ -45,8 +41,7 @@ const Footer = () => {
           href="https://reactjs.org/" 
           isExternal 
           aria-label="Learn more about React" 
-          title="React"
-        >
+          title="React">
           <FaReact fontSize={30} />
         </Link>
         <Text> + </Text>
@@ -54,8 +49,7 @@ const Footer = () => {
           href="https://chakra-ui.com/" 
           isExternal 
           aria-label="Learn more about Chakra UI" 
-          title="Chakra UI"
-        >
+          title="Chakra UI">
           <SiChakraui fontSize={28} />
         </Link>
         <Text> + </Text>
@@ -63,8 +57,7 @@ const Footer = () => {
           href="https://motion.dev/" 
           isExternal 
           aria-label="Learn more about Framer Motion" 
-          title="Framer Motion"
-        >
+          title="Framer Motion">
           <SiFramer fontSize={27} />
         </Link>        
       </HStack>

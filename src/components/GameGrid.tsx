@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { SimpleGrid, Text } from '@chakra-ui/react';
+import { useEffect } from 'react'
+import { SimpleGrid } from '@chakra-ui/react';
 import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
@@ -14,7 +14,6 @@ interface GameGridProps {
 const GameGrid = ({gameQuery, setError} : GameGridProps) => {
 
   const {data, error, isLoading} = useGames(gameQuery);
-
   const skeletons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
   useEffect(() => {

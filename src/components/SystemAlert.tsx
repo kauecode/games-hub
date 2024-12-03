@@ -1,5 +1,4 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@chakra-ui/react'
-import React from 'react'
 import { GameAppError } from '../App'
 
 interface SystemAlertProps {

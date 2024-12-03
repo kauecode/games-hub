@@ -1,10 +1,8 @@
-import { Box, Button, HStack, Image, Link, Text, useColorMode } from '@chakra-ui/react'
-import React from 'react'
+import { HStack, Link, Text, useColorMode } from '@chakra-ui/react'
 import ColorModeSwitch from './ColorModeSwitch'
 import SearchInput from './SearchInput'
 import Logo from './Logo'
 import { GameQuery } from '../App'
-
 
 interface NavBarProps {
   onSearch: (s:string) => void

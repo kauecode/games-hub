@@ -6,12 +6,12 @@ const config: ThemeConfig = {
 
 // Custom breakpoints
 const breakpoints = {
-  sm: "30em", // 480px
-  md: "48em", // 768px
-  lg: "62em", // 992px
-  xl: "80em", // 1280px
-  xxl: "100em", // 1600px
-  xxxl: "114em", // 1824px
+  sm: "30em",     // 480px
+  md: "48em",     // 768px
+  lg: "62em",     // 992px
+  xl: "80em",     // 1280px
+  xxl: "100em",   // 1600px
+  xxxl: "114em",  // 1824px
 };
 
 const theme = extendTheme({

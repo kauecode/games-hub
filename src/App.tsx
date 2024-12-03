@@ -1,4 +1,3 @@
-import './App.css'
 import { Grid, GridItem, HStack, Show, SkipNavContent, SkipNavLink } from '@chakra-ui/react'
 import NavBar from './components/NavBar'
 import GameGrid from './components/GameGrid'

@@ -1,5 +1,4 @@
-import { HStack, ListItem, Skeleton, SkeletonText, Image, Box } from '@chakra-ui/react'
-import React from 'react'
+import { HStack, ListItem, Skeleton, SkeletonText } from '@chakra-ui/react'
 
 interface GenreListSkeletonProps {
   numberOfItems: number

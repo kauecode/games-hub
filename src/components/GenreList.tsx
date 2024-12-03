@@ -41,8 +41,7 @@ const GenreList = ({setGenre, selectedGenre, setError} : GenreListProps) => {
           </ListItem>
         )}
       </List>
-    </>
-    
+    </> 
   )
 }
 

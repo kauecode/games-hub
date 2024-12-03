@@ -8,6 +8,7 @@ interface SortSelectorProps {
 
 const SortSelector = ( {sortOrder, selectedOrder} : SortSelectorProps ) => {
 
+  // You can reverse the sort order adding a hyphen, for example: -released.
   const sortOptions = [
     { value: null, label: "Revelance" },
     { value: "-added", label: "Date Added" },
@@ -34,6 +35,3 @@ const SortSelector = ( {sortOrder, selectedOrder} : SortSelectorProps ) => {
 }
 
 export default SortSelector
-
-//Available fields: name, released, added, created, updated, rating, metacritic. 
-// You can reverse the sort order adding a hyphen, for example: -released.
