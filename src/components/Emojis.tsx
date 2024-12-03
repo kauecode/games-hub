@@ -10,15 +10,15 @@ interface EmojisProps {
 }
 
 const emojiMap: { [key: number]: ImageProps} = {
-  5 : { alt: 'EGGcellent', src: Excellent, boxSize: 9},
-  4 : { alt: 'Recomended', src: ThumbsUP, boxSize: 7},
-  3 : { alt: 'Meh', src: Meh, boxSize: 7},
-  0 : { alt: 'Skipdi', src: Skip, boxSize: 7},
+  5 : { alt: 'EGGcellent', src: Excellent, boxSize: 7},
+  4 : { alt: 'Recomended', src: ThumbsUP, boxSize: 6},
+  3 : { alt: 'Meh', src: Meh, boxSize: 6},
+  0 : { alt: 'Skipdi', src: Skip, boxSize: 6},
 }
 
 const Emojis = ({rating} : EmojisProps) => {
   return (
-    <Image {...emojiMap[rating]} />
+    <Image display='inline' {...emojiMap[rating]} />
   )
 }
 

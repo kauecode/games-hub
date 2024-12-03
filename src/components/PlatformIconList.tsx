@@ -6,6 +6,7 @@ import { Platforms } from '../hooks/useGames'
 import { HStack, Icon, VisuallyHidden } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import { HiDesktopComputer } from "react-icons/hi";
+import { wrap } from 'framer-motion';
 
 
 interface PlatformIconListProps {
@@ -36,10 +37,10 @@ const PlatformIconList = ( {platforms } : PlatformIconListProps) => {
 
   return (
     <>
-      <HStack>
+      <HStack flexWrap='wrap'>
       {platforms.map((platform) => 
         <Icon 
-          boxSize={6} 
+          boxSize={4} 
           color="gray.500" 
           key={platform.id} 
           as={iconMap[platform.slug]} 

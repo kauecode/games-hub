@@ -1,20 +1,27 @@
-import { Box, HStack, Link, Text } from '@chakra-ui/react'
+import { Box, Image, Heading, HStack, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 import { FaCanadianMapleLeaf, FaGithub, FaReact } from 'react-icons/fa'
-import { SiChakraui, SiVite } from 'react-icons/si'
+import { SiChakraui, SiFramer, SiVite } from 'react-icons/si'
 import { BiLogoTypescript } from "react-icons/bi";
+import Logo from './Logo';
 
 
 const Footer = () => {
   return (
-    <Box as="footer" bg="gray.700" color="white" mt={8} py={8} px={2} textAlign="center">
+    <Box justifyContent={'Center'} id='FooterAbout' as="footer" bg="gray.700" color="white" mt={8} py={8} px={2} textAlign="center">
+      <Link display="inline-block" href="https://kaue.ca" isExternal>
+        <Logo color={"#f5f5f5f0"}/>      
+      </Link>
+      <Heading fontSize='2xl' mb={6}>
+        About
+      </Heading>
       <Text>
-        This is a test project, you can find the <Link fontWeight='semibold' textDecoration='underline' href='https://github.com/kauecode' isExternal>source code here</Link>.
+        Made in Toronto <FaCanadianMapleLeaf color='orange' style={{display: "inline"}}/> Canada by <Link fontWeight='semibold' textDecoration='underline' href='https://kaue.ca' isExternal>Kaue</Link>.        
       </Text>
       <Text my={2}>
-        Made in Toronto, Canada <FaCanadianMapleLeaf color='orange' style={{display: "inline"}}/> by <Link fontWeight='semibold' textDecoration='underline' href='https://kaue.ca' isExternal>Kaue</Link>.
+        This is a test project, you can find the <Link fontWeight='semibold' textDecoration='underline' href='https://github.com/kauecode' isExternal>source code here</Link>.
       </Text>
-      <Text my={2}>Inspired by <Link fontWeight='extrabold' href='https://rawg.io' isExternal>RAWG</Link>, using their API, as well as:</Text>
+      <Text mt={6} mb={2}>Inspired by <Link fontWeight='extrabold' href='https://rawg.io' isExternal>RAWG</Link> and built using their API, this project incorporates:</Text>
       <HStack spacing={2} justify="center">
         <Link 
           href="https://vitejs.dev/" 
@@ -25,6 +32,15 @@ const Footer = () => {
           <SiVite fontSize={28} />
         </Link>
         <Text> + </Text>
+        <Link 
+          href="https://www.typescriptlang.org/" 
+          isExternal 
+          aria-label="Learn more about TypeScript" 
+          title="TypeScript"
+        >
+          <BiLogoTypescript fontSize={35} />
+        </Link>
+        <Text> + </Text>        
         <Link 
           href="https://reactjs.org/" 
           isExternal 
@@ -44,13 +60,13 @@ const Footer = () => {
         </Link>
         <Text> + </Text>
         <Link 
-          href="https://www.typescriptlang.org/" 
+          href="https://motion.dev/" 
           isExternal 
-          aria-label="Learn more about TypeScript" 
-          title="TypeScript"
+          aria-label="Learn more about Framer Motion" 
+          title="Framer Motion"
         >
-          <BiLogoTypescript fontSize={35} />
-        </Link>
+          <SiFramer fontSize={27} />
+        </Link>        
       </HStack>
     </Box>
   )

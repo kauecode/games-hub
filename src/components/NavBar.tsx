@@ -23,6 +23,9 @@ const NavBar = ({onSearch, gameQuery} : NavBarProps) => {
         </Link>
         <SearchInput onSearch={onSearch} gameQuery={gameQuery}/>
         <ColorModeSwitch />
+        <Link pr={3} href="#FooterAbout">
+          <Text fontWeight='semibold'>About</Text>
+        </Link>        
       </HStack>
     </>
   )

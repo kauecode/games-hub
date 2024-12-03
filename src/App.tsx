@@ -1,5 +1,5 @@
 import './App.css'
-import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react'
+import { Grid, GridItem, HStack, Show, SkipNavContent, SkipNavLink } from '@chakra-ui/react'
 import NavBar from './components/NavBar'
 import GameGrid from './components/GameGrid'
 import GenreList from './components/GenreList'
@@ -32,7 +32,9 @@ function App() {
 
   return (
     <>
+    <SkipNavLink>Skip to content</SkipNavLink>
     {globalError.length > 0 && <SystemAlert errorList={globalError} />}
+ 
       <Grid 
       templateAreas={{        
         base: `"nav" "main" "footer"`,
@@ -67,6 +69,7 @@ function App() {
               selectedPlatform={gameQuery.platform} />
             <SortSelector selectedOrder={gameQuery.ordering} sortOrder={(ordering) => setGameQuery({...gameQuery, ordering })} />
           </HStack>
+          <SkipNavContent />
           <GameGrid
             setError={(errorObj) => setGlobalError([...globalError, errorObj])} 
             gameQuery={gameQuery} />

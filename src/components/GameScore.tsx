@@ -14,8 +14,8 @@ const GameScore = ({score} : GameCardProps) => {
   if (score === 0 || score === null) return
 
   return (
-    <Box background='black' rounded={5} position='absolute' overflow='hidden' top={1} right={1} >
-      <Badge fontSize={16} padding={2} fontWeight={'bold'} colorScheme={scoreColor(score)}>{score}</Badge>  
+    <Box rounded={5}>
+      <Badge fontSize={16} py={0} px={2} fontWeight={'bold'} colorScheme={scoreColor(score)}>{score}</Badge>  
     </Box>
   )
 }

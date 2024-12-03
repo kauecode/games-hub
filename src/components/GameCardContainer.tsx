@@ -7,7 +7,7 @@ interface GameCardContainerProps {
 
 const GameCardContainer = ({children} : GameCardContainerProps) => {
   return (
-    <Box borderRadius={10}>
+    <Box borderRadius={10} display='flex' width='100%' justifyItems='stretch'>
       {children}
     </Box>
   )

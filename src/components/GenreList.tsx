@@ -22,7 +22,7 @@ const GenreList = ({setGenre, selectedGenre, setError} : GenreListProps) => {
 
   return (
     <>
-      <Heading fontSize={'2xl'} paddingBottom={2}>Genres</Heading>
+      <Heading fontSize={'2xl'} pt={2} pb={2}>Genres</Heading>
       <List>
         {isLoading && <GenreListSkeleton numberOfItems={20} />}
         {data.map((genre) => 
