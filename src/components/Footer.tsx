@@ -17,7 +17,7 @@ const Footer = () => {
         Made in Toronto <FaCanadianMapleLeaf color='orange' style={{display: "inline"}}/> Canada by <Link fontWeight='semibold' textDecoration='underline' href='https://kaue.ca' isExternal>Kaue</Link>.        
       </Text>
       <Text my={2}>
-        This is a test project, you can find the <Link fontWeight='semibold' textDecoration='underline' href='https://github.com/kauecode' isExternal>source code here</Link>.
+        This is a test project, you can find the <Link fontWeight='semibold' textDecoration='underline' href='https://github.com/kauecode/games-hub' isExternal>source code here</Link>.
       </Text>
       <Text mt={6} mb={2}>Inspired by <Link fontWeight='extrabold' href='https://rawg.io' isExternal>RAWG</Link> and built using their API, this project incorporates:</Text>
       <HStack spacing={2} justify="center">
