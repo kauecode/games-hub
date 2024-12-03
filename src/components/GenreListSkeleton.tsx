@@ -9,6 +9,9 @@ const GenreListSkeleton = ({numberOfItems} : GenreListSkeletonProps) => {
 
   const itemsToBeRendered = [...Array(numberOfItems).keys()];
 
+  // #THOUGHTS: could do with array from as well...
+  // const itemsToBeRendered = Array.from({ length: numberOfItems }, (_, i) => i);
+
   return (
     <>
     {itemsToBeRendered.map((item) => 
