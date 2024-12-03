@@ -10,7 +10,7 @@ const GameScore = ({score} : GameCardProps) => {
     return score > 75 ? "green" : score > 50 ? "yellow" : "red"
   }
 
-  if (score === 0 || score === null) return
+  if (score === 0 || score === null) return null
 
   return (
     <Box rounded={5}>
