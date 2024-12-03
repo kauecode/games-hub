@@ -6,15 +6,33 @@ import GameScore from './GameScore'
 import ImageNotFound from '../../public/image-not-found.png'
 import resizeImg from '../utils/image-resize'
 import Emojis from './Emojis'
+import { motion, AnimatePresence } from "framer-motion";
 
 interface GameCardProps {
   game: Game
 }
 
+const MotionCard = motion(Card); // for Chakra components
+
 const GameCard = ({ game } : GameCardProps) => {
 
   return (
-    <Card overflow='hidden' variant={'filled'}>
+    <MotionCard 
+      whileHover={{
+        scale: 1.05
+      }}
+      whileTap={{
+        scale: 0.98
+      }}
+      transition={{ 
+        duration: 0.3,
+        type: "spring",
+        damping: 25,
+        stiffness: 500
+      }}
+      // key={game}    
+      overflow='hidden' 
+      variant={'filled'}>
       <Image
         src={resizeImg(game.background_image)} 
         height="180px"
@@ -30,7 +48,7 @@ const GameCard = ({ game } : GameCardProps) => {
         <Heading paddingY={5} fontSize={'2xl'}>{game.name}</Heading>          
         <Emojis rating={game.rating_top} />
       </CardBody>
-    </Card>
+    </MotionCard>
   )
 }
 
