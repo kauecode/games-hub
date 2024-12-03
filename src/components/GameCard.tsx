@@ -18,7 +18,7 @@ const GameCard = ({ game } : GameCardProps) => {
   return (
     <MotionCard as={Link}
       isExternal
-      aria-label={`Visit ${game.name} on RAWG (opens in a new tab)`}
+      aria-labelledby={`game-card-${game.id} (opens in a new tab)`}
       href={'https://rawg.io/games/'}
       _hover={{textDecoration: 'none'}}
       whileHover={{
@@ -46,7 +46,7 @@ const GameCard = ({ game } : GameCardProps) => {
       <CardBody pb={16}>
       {game.parent_platforms &&
         <PlatformIconList platforms={game.parent_platforms.map(platform => platform.platform)} />}          
-        <Heading mt={2} fontSize={'2xl'}>{game.name} <Emojis rating={game.rating_top} /></Heading> 
+        <Heading mt={2} id={`game-card-${game.id}`} fontSize={'2xl'}>{game.name} <Emojis rating={game.rating_top} /></Heading> 
 
         <HStack justifyContent="space-between" position='absolute' p={5}  bottom={0} left={0} width='100%'>
           <Text>Gamescore: </Text>

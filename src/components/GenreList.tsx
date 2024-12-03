@@ -28,7 +28,7 @@ const GenreList = ({setGenre, selectedGenre, setError} : GenreListProps) => {
         {data.map((genre) => 
           <ListItem key={genre.id} paddingY={2}>
             <HStack>
-              <Image objectFit='cover' boxSize={10} borderRadius={10} src={resizeImg(genre.image_background)}/>
+              <Image alt='' role='presentation' objectFit='cover' boxSize={10} borderRadius={10} src={resizeImg(genre.image_background)}/>
               <Button 
                 whiteSpace="normal" textAlign='left'
                 fontWeight={selectedGenre?.id === genre.id ? 'extrabold' : 'normal'}
