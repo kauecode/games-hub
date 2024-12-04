@@ -19,7 +19,7 @@ const GameCard = ({ game } : GameCardProps) => {
     <MotionCard as={Link}
       isExternal
       aria-labelledby={`game-card-${game.id} (opens in a new tab)`}
-      href={'https://rawg.io/games/'}
+      href={'https://rawg.io/games/' + game.slug}
       _hover={{textDecoration: 'none'}}
       whileHover={{
         scale: 1.02
