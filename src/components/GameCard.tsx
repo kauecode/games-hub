@@ -44,7 +44,7 @@ const GameCard = ({ game } : GameCardProps) => {
         <PlatformIconList platforms={game.parent_platforms.map(platform => platform.platform)} />}          
         <Heading mt={2} fontSize={'2xl'}>{game.name} <Emojis rating={game.rating_top} /></Heading>         
         <HStack justifyContent="space-between" position='absolute' p={5}  bottom={0} left={0} width='100%'>
-          <Text role='presem'>Gamescore: </Text>
+          <Text>Gamescore: </Text>
           <GameScore score={game.metacritic} />          
         </HStack>
       </CardBody>      
