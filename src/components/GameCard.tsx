@@ -1,5 +1,5 @@
 import { Game } from '../hooks/useGames'
-import { Card, Text, CardBody, Heading, HStack, Image, Link, textDecoration } from '@chakra-ui/react'
+import { Card, Text, CardBody, Heading, HStack, Image, Link, textDecoration, VisuallyHidden } from '@chakra-ui/react'
 import PlatformIconList from './PlatformIconList'
 import GameScore from './GameScore'
 import ImageNotFound from '../../public/image-not-found.png'
@@ -18,15 +18,12 @@ const GameCard = ({ game } : GameCardProps) => {
   return (
     <MotionCard as={Link}
       isExternal
-      aria-labelledby={`game-card-${game.id} (opens in a new tab)`}
-      href={'https://rawg.io/games/'}
+      href={'https://rawg.io/games/' + game.slug}
       _hover={{textDecoration: 'none'}}
-      whileHover={{
-        scale: 1.02
-      }}
-      whileTap={{
-        scale: 0.98
-      }}
+      overflow='hidden' 
+      width='100%'      
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ 
         duration: 0.3,
         type: "spring",
@@ -34,9 +31,8 @@ const GameCard = ({ game } : GameCardProps) => {
         stiffness: 500
       }}
       // key={game}    
-      overflow='hidden' 
-      width='100%'
-      variant={'filled'}>
+      variant={'filled'}>     
+      <VisuallyHidden>Opens in a new window</VisuallyHidden> 
       <Image
         src={resizeImg(game.background_image)} 
         height="180px"
@@ -46,13 +42,12 @@ const GameCard = ({ game } : GameCardProps) => {
       <CardBody pb={16}>
       {game.parent_platforms &&
         <PlatformIconList platforms={game.parent_platforms.map(platform => platform.platform)} />}          
-        <Heading mt={2} id={`game-card-${game.id}`} fontSize={'2xl'}>{game.name} <Emojis rating={game.rating_top} /></Heading> 
-
+        <Heading mt={2} fontSize={'2xl'}>{game.name} <Emojis rating={game.rating_top} /></Heading>         
         <HStack justifyContent="space-between" position='absolute' p={5}  bottom={0} left={0} width='100%'>
           <Text>Gamescore: </Text>
           <GameScore score={game.metacritic} />          
         </HStack>
-      </CardBody>
+      </CardBody>      
     </MotionCard>
   )
 }
