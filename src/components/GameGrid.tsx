@@ -13,23 +13,23 @@ interface GameGridProps {
 
 const GameGrid = ({gameQuery, setError} : GameGridProps) => {
 
-  const {data, error, isLoading} = useGames(gameQuery);
+  const {data, error, isFetching} = useGames(gameQuery);
   const skeletons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
   useEffect(() => {
     if (error)
-      setError({message: error, description: "Games grid will not load"})
+      setError({message: error.message, description: "Games grid will not load"})
   }, [error])
 
   return (
     <>
     <SimpleGrid columns={{ sm:1, md:2, lg:3, xl:4, xxl: 5, xxxl: 6 }} padding={5} spacing={5}>
-      {isLoading && skeletons.map((skel) => 
+      {isFetching && skeletons.map((skel) => 
         <GameCardContainer key={skel}>
           <GameCardSkeleton />
         </GameCardContainer>
       )}      
-      {data.map((game, i) =>
+      {data?.results.map((game, i) =>
         <GameCardContainer key={game.id}>
           <GameCard game={game} />
         </GameCardContainer>

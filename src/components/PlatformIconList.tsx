@@ -2,13 +2,13 @@ import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from 'r
 import { MdPhoneIphone } from 'react-icons/md';
 import { SiAtari, SiNintendo, SiSega } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
-import { Platforms } from '../hooks/useGames'
 import { HStack, Icon, VisuallyHidden } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import { HiDesktopComputer } from "react-icons/hi";
+import { Platform } from '../types/types';
 
 interface PlatformIconListProps {
-  platforms: Platforms[]
+  platforms: Platform[]
 }
 
 const PlatformIconList = ( {platforms } : PlatformIconListProps) => {
@@ -30,7 +30,6 @@ const PlatformIconList = ( {platforms } : PlatformIconListProps) => {
     "3do" : SiSega,
     atari : SiAtari,
     "commodore-amiga" : HiDesktopComputer
-
   }
 
   return (

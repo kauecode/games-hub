@@ -1,8 +1,9 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
-import usePlatforms, { Platform } from '../hooks/usePlatforms'
+import usePlatforms from '../hooks/usePlatforms'
 import { GameAppError } from '../App'
+import { Platform } from '../types/types'
 
 interface PlatformSelectorProps {
   selectedPlatform: Platform | null,
@@ -12,11 +13,11 @@ interface PlatformSelectorProps {
 
 const PlatformSelector = ( {selectedPlatform, setSelectedPlatform, setError} : PlatformSelectorProps ) => {
 
-  const {data, error, isLoading} = usePlatforms();
+  const {data, error, isFetching} = usePlatforms();
 
   useEffect(() => {
     if (error)
-      setError({message: error, description: "Platform selection will not be available"})
+      setError({message: error.message, description: "Platform selection will not be available"})
   }, [error])
 
   if (error) return null
@@ -32,7 +33,7 @@ const PlatformSelector = ( {selectedPlatform, setSelectedPlatform, setError} : P
             onClick={() => setSelectedPlatform(null)}>
             All Platforms
             </MenuItem>        
-          {data.map((platform) => 
+          {data?.results.map((platform) => 
             <MenuItem 
               onClick={() => setSelectedPlatform(platform)} 
               key={platform.id}>

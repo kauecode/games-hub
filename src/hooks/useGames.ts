@@ -1,35 +1,34 @@
+import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import useData from "./useData";
+import { AxiosError } from "axios";
+import APIclient from "../services/api-client";
+import { FetchRes, Game } from "../types/types";
 
-export interface Platforms {
-  id: number,
-  name: string,
-  slug: string
-}
+const apiClient = new APIclient<Game>('/games')
 
-export interface Game {
-  id: number,
-  name: string,
-  slug: string,
-  background_image: string,
-  parent_platforms: { platform: Platforms }[],
-  metacritic: number,
-  rating_top: number
-}
+const useGames = (gameQuery : GameQuery) => {
 
-const useGames = (
-  gameQuery : GameQuery
-) => {
-  return useData<Game>('/games',
-    { params: { 
+    console.log("Called");
+
+    const params = { 
       genres: gameQuery.genre?.id, 
       parent_platforms: gameQuery.platform?.id,
       ordering: gameQuery.ordering,
       search: gameQuery.search,
       page: 1,
       page_size: 24
-    }},
-    [gameQuery])
+    }
+
+    const query = useQuery<FetchRes<Game>, AxiosError>({
+      queryKey: ['games', params],
+      queryFn: () => apiClient.getData({params}),
+      staleTime: 24 * 60 * 60 * 1000, // 24 Hrs
+      // initialData: { count: 0, results: [] }, // #Todo: Set this up
+      keepPreviousData: true
+    });  
+
+    return query;
+
 }
 
 export default useGames;
