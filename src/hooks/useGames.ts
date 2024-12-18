@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import { AxiosError } from "axios";
 import APIclient from "../services/api-client";
@@ -8,20 +8,19 @@ const apiClient = new APIclient<Game>('/games')
 
 const useGames = (gameQuery : GameQuery) => {
 
-    console.log("Called");
-
-    const params = { 
-      genres: gameQuery.genre?.id, 
-      parent_platforms: gameQuery.platform?.id,
-      ordering: gameQuery.ordering,
-      search: gameQuery.search,
-      page: 1,
-      page_size: 24
-    }
-
-    const query = useQuery<FetchRes<Game>, AxiosError>({
-      queryKey: ['games', params],
-      queryFn: () => apiClient.getData({params}),
+    const query = useInfiniteQuery<FetchRes<Game>, AxiosError>({
+      queryKey: ['games', gameQuery],
+      queryFn: ({ pageParam = 1}) => apiClient.getData({
+        params: { 
+          genres: gameQuery.genre?.id, 
+          parent_platforms: gameQuery.platform?.id,
+          ordering: gameQuery.ordering,
+          search: gameQuery.search,
+          page: pageParam,
+          page_size: 24
+        }
+      }),
+      getNextPageParam: (lastPage, allPages) => lastPage.next ? allPages.length + 1 : undefined,
       staleTime: 24 * 60 * 60 * 1000, // 24 Hrs
       // initialData: { count: 0, results: [] }, // #Todo: Set this up
       keepPreviousData: true
