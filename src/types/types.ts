@@ -11,10 +11,7 @@ export interface Game {
 export interface Platform {
   id: number,
   name: string,
-  slug: string,
-  image_background: string,
-  description: string,
-  image: string
+  slug: string
 }
 
 export interface Genre {
@@ -27,5 +24,6 @@ export interface Genre {
 export interface FetchRes<T> {
   count: number,
   results: T[],
-  next: string | null
+  next: string | null,
+  previous: string | null
 }

@@ -7,8 +7,8 @@ import GenreListSkeleton from './GenreListSkeleton';
 import { Genre } from '../types/types';
 
 interface GenreListProps {
-  setGenre: (g:Genre) => void,
-  selectedGenre: Genre | null,
+  setGenre: (id:number) => void,
+  selectedGenre?: number,
   setError: ({} : GameAppError) => void
 }
 
@@ -33,9 +33,9 @@ const GenreList = ({setGenre, selectedGenre, setError} : GenreListProps) => {
               <Image alt='' role='presentation' objectFit='cover' boxSize={10} borderRadius={10} src={resizeImg(genre.image_background)}/>
               <Button 
                 whiteSpace="normal" textAlign='left'
-                fontWeight={selectedGenre?.id === genre.id ? 'extrabold' : 'normal'}
+                fontWeight={selectedGenre === genre.id ? 'extrabold' : 'normal'}
                 variant={'link'} fontSize={'lg'}
-                onClick={() => setGenre(genre)}
+                onClick={() => setGenre(genre.id)}
                 >
                 {genre.name}
               </Button>

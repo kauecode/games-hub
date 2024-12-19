@@ -8,11 +8,10 @@ import SortSelector from './components/SortSelector'
 import GameHeading from './components/GameHeading'
 import SystemAlert from './components/SystemAlert'
 import Footer from './components/Footer'
-import { Genre, Platform } from './types/types'
 
 export interface GameQuery {
-  genre: Genre | null,
-  platform: Platform | null,
+  selectedGenreId?: number,
+  selectedPlatformId?: number,
   ordering: string | null, // #TODO: look into this.
   search: string,
 }
@@ -50,12 +49,8 @@ function App() {
           <GridItem as="aside" padding={5} area="aside">
             <GenreList 
               setError={(errorObj) => setGlobalError([...globalError, errorObj])} 
-              setGenre={(g:Genre) => setGameQuery({...gameQuery, genre: g})} 
-              selectedGenre={gameQuery.genre}/>
-            {/* #THOUGHTS: */}
-            {/* Could use short hand here and let TS infer the type: */}
-            {/* (genre) => setGameQuery({...gameQuery, genre}) */}
-            {/* Not sure what I prefer, decide later */}
+              setGenre={(id:number) => setGameQuery({...gameQuery, selectedGenreId: id})} 
+              selectedGenre={gameQuery.selectedGenreId}/>
           </GridItem>
         </Show>
         <GridItem as="main" area="main">
@@ -63,8 +58,8 @@ function App() {
           <HStack padding={5} spacing={5}>            
             <PlatformSelector 
               setError={(errorObj) => setGlobalError([...globalError, errorObj])} 
-              setSelectedPlatform={(p:Platform | null) => setGameQuery({...gameQuery, platform: p})} 
-              selectedPlatform={gameQuery.platform} />
+              setSelectedPlatform={(id:number | undefined) => setGameQuery({...gameQuery, selectedPlatformId: id})} 
+              selectedPlatformId={gameQuery.selectedPlatformId} />
             <SortSelector selectedOrder={gameQuery.ordering} sortOrder={(ordering) => setGameQuery({...gameQuery, ordering })} />
           </HStack>
           <SkipNavContent />

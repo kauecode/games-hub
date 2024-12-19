@@ -2,16 +2,17 @@ import { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
 import APIclient from "../services/api-client";
 import { FetchRes, Genre } from "../types/types";
+import genreInitialData from "../data/genres"
 
 const apiClient = new APIclient<Genre>('/genres');
 
 const useGenres = () => { 
     
     const query = useQuery<FetchRes<Genre>, AxiosError>({
-      queryKey: ['genressss'],
+      queryKey: ['genres'],
       queryFn: apiClient.getData,
       staleTime: 24 * 60 * 60 * 1000, // 24 Hrs
-      // initialData: { count: 0, results: [] }, // #Todo: Set this up
+      initialData: genreInitialData,
       keepPreviousData: true
     });  
 
