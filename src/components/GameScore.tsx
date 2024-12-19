@@ -10,7 +10,11 @@ const GameScore = ({score} : GameCardProps) => {
     return score > 75 ? "green" : score > 50 ? "yellow" : "red"
   }
 
-  if (score === 0 || score === null) return null
+  if (score === 0 || score === null) return (
+    <Box rounded={5}>
+      <Badge fontSize={16} py={0} px={2} fontWeight={'bold'} colorScheme={"gray"}>N/A</Badge>  
+    </Box>    
+  )
 
   return (
     <Box rounded={5}>
