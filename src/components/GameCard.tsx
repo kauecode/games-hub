@@ -1,4 +1,3 @@
-import { Game } from '../hooks/useGames'
 import { Card, Text, CardBody, Heading, HStack, Image, Link, textDecoration, VisuallyHidden } from '@chakra-ui/react'
 import PlatformIconList from './PlatformIconList'
 import GameScore from './GameScore'
@@ -6,6 +5,7 @@ import ImageNotFound from '../../public/image-not-found.png'
 import resizeImg from '../utils/image-resize'
 import Emojis from './Emojis'
 import { motion } from "framer-motion";
+import { Game } from '../types/types'
 
 interface GameCardProps {
   game: Game

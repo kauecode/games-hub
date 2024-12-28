@@ -1,23 +1,27 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
-import usePlatforms, { Platform } from '../hooks/usePlatforms'
+import usePlatforms from '../hooks/usePlatforms'
 import { GameAppError } from '../App'
+import { Platform } from '../types/types'
+import usePlatform from '../hooks/usePlatform'
 
 interface PlatformSelectorProps {
-  selectedPlatform: Platform | null,
-  setSelectedPlatform:  (q: Platform | null) => void
+  selectedPlatformId?: number,
+  setSelectedPlatform:  (id: number | undefined) => void
   setError: ({} : GameAppError) => void
 }
 
-const PlatformSelector = ( {selectedPlatform, setSelectedPlatform, setError} : PlatformSelectorProps ) => {
+const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform, setError} : PlatformSelectorProps ) => {
 
-  const {data, error, isLoading} = usePlatforms();
+  const {data, error, isFetching} = usePlatforms();
 
   useEffect(() => {
     if (error)
-      setError({message: error, description: "Platform selection will not be available"})
+      setError({message: error.message, description: "Platform selection will not be available"})
   }, [error])
+
+  const selectedPlatform = usePlatform(selectedPlatformId)
 
   if (error) return null
 
@@ -29,12 +33,12 @@ const PlatformSelector = ( {selectedPlatform, setSelectedPlatform, setError} : P
       </MenuButton>
       <MenuList>
           <MenuItem 
-            onClick={() => setSelectedPlatform(null)}>
+            onClick={() => setSelectedPlatform(undefined)}>
             All Platforms
             </MenuItem>        
-          {data.map((platform) => 
+          {data?.results.map((platform) => 
             <MenuItem 
-              onClick={() => setSelectedPlatform(platform)} 
+              onClick={() => setSelectedPlatform(platform.id)} 
               key={platform.id}>
               {platform.name}
             </MenuItem>
