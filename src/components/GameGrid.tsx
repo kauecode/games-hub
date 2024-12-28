@@ -1,27 +1,25 @@
-import { useEffect } from 'react'
-import { Box, Button, Center, SimpleGrid, Spinner, Text } from '@chakra-ui/react';
+import { SimpleGrid, Spinner, Text } from '@chakra-ui/react';
 import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
-import { GameAppError, GameQuery } from '../App';
+import { GameQuery } from '../App';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { ErrorReducerAction } from '../reducers/errorReducer';
+import useError from '../hooks/useError';
 
 interface GameGridProps {
   gameQuery : GameQuery,
-  setError: ({} : GameAppError) => void
+  errorDispatcher: React.Dispatch<ErrorReducerAction>
 }
 
-const GameGrid = ({gameQuery, setError} : GameGridProps) => {
+const GameGrid = ({gameQuery, errorDispatcher} : GameGridProps) => {
 
   const {data, error, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage} = useGames(gameQuery);
   const skeletons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
-  useEffect(() => {
-    if (error)
-      setError({message: error.message, description: "Games grid will not load"})
-  }, [error])
+  useError({ error, errorDispatcher, info: "Games grid will not load", ident: "GG"});
 
   if (data?.pages[0]?.count === 0) return <Text p={5} fontWeight={"bold"}>No Games Found!</Text>
 

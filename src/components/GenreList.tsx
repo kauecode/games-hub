@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useGenres from '../hooks/useGenres';
-import { HStack, List, ListItem, Image, Text, Spinner, Button, Heading } from '@chakra-ui/react';
+import { HStack, List, ListItem, Image, Button, Heading } from '@chakra-ui/react';
 import resizeImg from '../utils/image-resize';
-import { GameAppError } from '../App';
 import GenreListSkeleton from './GenreListSkeleton';
-import { Genre } from '../types/types';
+import { ErrorReducerAction } from '../reducers/errorReducer';
+import useError from '../hooks/useError';
 
 interface GenreListProps {
   setGenre: (id:number) => void,
   selectedGenre?: number,
-  setError: ({} : GameAppError) => void
+  errorDispatcher: React.Dispatch<ErrorReducerAction>
 }
 
-const GenreList = ({setGenre, selectedGenre, setError} : GenreListProps) => {
+const GenreList = ({setGenre, selectedGenre, errorDispatcher} : GenreListProps) => {
 
   const {data, error, isFetching} = useGenres();
 
-  useEffect(() => {
-    if (error)
-      setError({message: error.message, description: "Genre selection will not be available"})
-  }, [error])  
-
+  useError({ error, errorDispatcher, info: "Genre selection will not be available", ident: "GL"});
   
   return (
     <>

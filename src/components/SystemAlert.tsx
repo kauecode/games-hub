@@ -6,14 +6,17 @@ interface SystemAlertProps {
 }
 
 const SystemAlert = ({errorList} : SystemAlertProps) => {
+
   return (
     <>
       {errorList.map((error, index) => 
       <Alert key={index} status='error'>
         <AlertIcon />
-        <AlertTitle>{error.message}</AlertTitle>
-        {error.description &&
-        <AlertDescription>| {error.description}</AlertDescription>}
+        <AlertTitle>{error.message}</AlertTitle>       
+        <AlertDescription>
+          {error.code && "(" + error.code + ") "} 
+          {error.info && error.info}          
+        </AlertDescription>
       </Alert>    
       )}
     </>

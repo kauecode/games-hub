@@ -1,25 +1,21 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import usePlatforms from '../hooks/usePlatforms'
-import { GameAppError } from '../App'
-import { Platform } from '../types/types'
 import usePlatform from '../hooks/usePlatform'
+import { ErrorReducerAction } from '../reducers/errorReducer'
+import useError from '../hooks/useError'
 
 interface PlatformSelectorProps {
   selectedPlatformId?: number,
   setSelectedPlatform:  (id: number | undefined) => void
-  setError: ({} : GameAppError) => void
+  errorDispatcher: React.Dispatch<ErrorReducerAction>
 }
 
-const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform, setError} : PlatformSelectorProps ) => {
+const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform, errorDispatcher} : PlatformSelectorProps ) => {
 
   const {data, error, isFetching} = usePlatforms();
 
-  useEffect(() => {
-    if (error)
-      setError({message: error.message, description: "Platform selection will not be available"})
-  }, [error])
+  useError({ error, errorDispatcher, info: "Platform selection will not be available", ident: "PS"});
 
   const selectedPlatform = usePlatform(selectedPlatformId)
 
