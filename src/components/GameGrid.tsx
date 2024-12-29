@@ -4,24 +4,39 @@ import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 import { GameQuery } from '../App';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { ErrorReducerAction } from '../reducers/errorReducer';
-import useError from '../hooks/useError';
+import useFetchError from '../hooks/useFetchError';
+import { SystemAlertContext } from './SystemAlert';
 
 interface GameGridProps {
-  gameQuery : GameQuery,
-  errorDispatcher: React.Dispatch<ErrorReducerAction>
+  gameQuery : GameQuery
 }
 
-const GameGrid = ({gameQuery, errorDispatcher} : GameGridProps) => {
+const GameGrid = ({gameQuery} : GameGridProps) => {
 
   const {data, error, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage} = useGames(gameQuery);
   const skeletons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
-  useError({ error, errorDispatcher, info: "Games grid will not load", ident: "GG"});
+  const {dispatch: alertDispatcher} = useContext(SystemAlertContext);
+  useFetchError({ error, alertDispatcher, info: "Games grid will not load", group: "GG"});
+  useEffect(() => {
+    if (data?.pages[0]?.count === 0) {
+      alertDispatcher({
+        type: "ADD", 
+          alert: {
+            alertType: "info",
+            id: Date.now(),
+            group: "GG",
+            message: "No Games Found!"
+          }
+        }
+      )
+    }    
+  }, [data])
 
-  if (data?.pages[0]?.count === 0) return <Text p={5} fontWeight={"bold"}>No Games Found!</Text>
+  if (data?.pages[0]?.count === 0) 
+    return <Text p={5} fontWeight={"bold"}>No Games Found!</Text>
 
   const totalGamesFetched = data?.pages.reduce((acc, page) => acc + page.results.length , 0) || 0;
 

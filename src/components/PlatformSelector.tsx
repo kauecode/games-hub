@@ -2,20 +2,22 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { BsChevronDown } from 'react-icons/bs'
 import usePlatforms from '../hooks/usePlatforms'
 import usePlatform from '../hooks/usePlatform'
-import { ErrorReducerAction } from '../reducers/errorReducer'
-import useError from '../hooks/useError'
+import { useContext } from 'react'
+import { SystemAlertContext } from './SystemAlert'
+import useFetchError from '../hooks/useFetchError'
 
 interface PlatformSelectorProps {
   selectedPlatformId?: number,
   setSelectedPlatform:  (id: number | undefined) => void
-  errorDispatcher: React.Dispatch<ErrorReducerAction>
 }
 
-const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform, errorDispatcher} : PlatformSelectorProps ) => {
+const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform} : PlatformSelectorProps ) => {
 
   const {data, error, isFetching} = usePlatforms();
 
-  useError({ error, errorDispatcher, info: "Platform selection will not be available", ident: "PS"});
+  const {dispatch: alertDispatcher} = useContext(SystemAlertContext)
+
+  useFetchError({ error, alertDispatcher, info: "Platform selection will not be available", group: "PS"});
 
   const selectedPlatform = usePlatform(selectedPlatformId)
 

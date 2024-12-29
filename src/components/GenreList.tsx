@@ -1,22 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import useGenres from '../hooks/useGenres';
 import { HStack, List, ListItem, Image, Button, Heading } from '@chakra-ui/react';
 import resizeImg from '../utils/image-resize';
 import GenreListSkeleton from './GenreListSkeleton';
-import { ErrorReducerAction } from '../reducers/errorReducer';
-import useError from '../hooks/useError';
+import { SystemAlertContext } from './SystemAlert';
+import useFetchError from '../hooks/useFetchError';
 
 interface GenreListProps {
   setGenre: (id:number) => void,
-  selectedGenre?: number,
-  errorDispatcher: React.Dispatch<ErrorReducerAction>
+  selectedGenre?: number
 }
 
-const GenreList = ({setGenre, selectedGenre, errorDispatcher} : GenreListProps) => {
+const GenreList = ({setGenre, selectedGenre} : GenreListProps) => {
 
   const {data, error, isFetching} = useGenres();
 
-  useError({ error, errorDispatcher, info: "Genre selection will not be available", ident: "GL"});
+  const {dispatch: alertDispatcher} = useContext(SystemAlertContext)
+
+  useFetchError({ error, alertDispatcher, info: "Genre selection will not be available", group: "GL"});
   
   return (
     <>
