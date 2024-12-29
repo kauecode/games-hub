@@ -25,7 +25,7 @@ const GameGrid = ({gameQuery} : GameGridProps) => {
       alertDispatcher({
         type: "ADD", 
           alert: {
-            alertType: "info",
+            alertType: "warning",
             id: Date.now(),
             group: "GG",
             message: "No Games Found!"

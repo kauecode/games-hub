@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useReducer } from 'react'
+import React, { createContext, ReactNode, useEffect, useReducer, useRef } from 'react'
 
 // REUSABLE TYPES
 
@@ -65,6 +65,18 @@ export const SystemAlertContext = createContext<SystemAlertContextType>({} as Sy
 interface SystemAlertProviderProps { children: ReactNode }
 const SystemAlertProvider = ({children} : SystemAlertProviderProps) => {
   const [alertState, alertDispatch] = useReducer(systemAlertReducer, [])
+
+    useEffect(() => {
+    let timers:number[] = []; 
+    alertState.forEach(el => {
+      if (el.alertType === "warning" || el.alertType === "info") {
+        const timeout = setTimeout(() => alertDispatch({type: "REMOVE-BY-ID", id: el.id}), 3000)
+        timers.push(timeout)
+      }
+    })
+    // return () => timers.forEach((el) => clearTimeout(el))
+  }, [alertState])
+  
   return (
     <SystemAlertContext.Provider value={{state: alertState, dispatch: alertDispatch}}>    
       {children}
