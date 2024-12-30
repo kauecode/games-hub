@@ -1,36 +1,34 @@
 import { Button, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import React, { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs'
-import { GameQuery } from '../App'
 import { IoCloseCircle } from 'react-icons/io5'
+import useQueryStore from '../stores/queryStore'
 
-interface SearchInputProps {
-  onSearch: (s:string) => void,
-  gameQuery: GameQuery
-}
+const SearchInput = () => {
 
-const SearchInput = ({onSearch, gameQuery} : SearchInputProps) => {
+  const setSearchText = useQueryStore(s => s.setSearchString);
+  const searchString = useQueryStore(s => s.gameQuery.searchString);
 
-  const searchValue = useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchValue.current && searchValue.current.value) {
-      onSearch(searchValue.current.value)
+    if (searchInputRef.current && searchInputRef.current.value) {
+      setSearchText(searchInputRef.current.value)
     }
   }
 
   const handleClearSearch = () => {
-    onSearch("");
-    if (searchValue.current) searchValue.current.value = "";
+    setSearchText("");
+    if (searchInputRef.current) searchInputRef.current.value = "";
   }
 
   return (
     <form onSubmit={(e) => handleFormSubmit(e)}>
       <InputGroup>
         <InputLeftElement children={<BsSearch/>} />
-        <Input ref={searchValue} borderRadius={20} placeholder='Type a game name and press [enter] to search...' variant='filled' />
-        {gameQuery.search &&
+        <Input ref={searchInputRef} borderRadius={20} placeholder='Type a game name and press [enter] to search...' variant='filled' />
+        {searchString &&
         <Button       
           position="absolute"
           right="0"

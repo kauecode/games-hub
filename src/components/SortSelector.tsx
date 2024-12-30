@@ -1,16 +1,15 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { BsChevronDown } from 'react-icons/bs'
+import useQueryStore from '../stores/queryStore';
 
-interface SortSelectorProps {
-  sortOrder: (order: string | null) => void
-  selectedOrder: string | null
-}
+const SortSelector = () => {
 
-const SortSelector = ( {sortOrder, selectedOrder} : SortSelectorProps ) => {
+  const setSortOrder = useQueryStore(s => s.setSortOrder);
+  const selectedSortOrder = useQueryStore(s => s.gameQuery.selectedSortOrder);
 
   // You can reverse the sort order adding a hyphen, for example: -released.
   const sortOptions = [
-    { value: null, label: "Revelance" },
+    { value: undefined, label: "Revelance" },
     { value: "-added", label: "Date Added" },
     { value: "name", label: "Name" },
     { value: "-released", label: "Release Date" },
@@ -18,7 +17,7 @@ const SortSelector = ( {sortOrder, selectedOrder} : SortSelectorProps ) => {
     { value: "-rating", label: "Average Rating" }
   ]
 
-  const currentSortOrder = sortOptions.find(item => item.value === selectedOrder)?.label
+  const currentSortOrder = sortOptions.find(item => item.value === selectedSortOrder)?.label
 
   return (
     <>
@@ -27,7 +26,9 @@ const SortSelector = ( {sortOrder, selectedOrder} : SortSelectorProps ) => {
       Sort By: {currentSortOrder || "Revelance"}      
       </MenuButton>
       <MenuList>
-        {sortOptions.map((item, index) => <MenuItem key={index} onClick={() => sortOrder(item.value)}>{item.label}</MenuItem>)}
+        {sortOptions.map((item, index) => 
+          <MenuItem key={index} onClick={() => setSortOrder(item.value)}>{item.label}</MenuItem>
+        )}
       </MenuList>
     </Menu>
     </>

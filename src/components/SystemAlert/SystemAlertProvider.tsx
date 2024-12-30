@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useEffect, useReducer, useRef } from 'react'
+import React, { createContext, ReactNode, useEffect, useReducer } from 'react'
 
 // REUSABLE TYPES
 
@@ -10,7 +10,7 @@ export interface SystemAlertItem {
   info?: string,
   code?: string
 }
-export type GroupAlertOptions = "GL" | "PS" | "GG"; // GenreList, PlatformSelector, GamesGrid
+export type GroupAlertOptions = "GL" | "PS" | "GG"; // GenreList | PlatformSelector | GamesGrid
 export type AlertTypeOptions = "error" | "info" | "warning" | "loading" | "success";
 
 
@@ -66,15 +66,15 @@ interface SystemAlertProviderProps { children: ReactNode }
 const SystemAlertProvider = ({children} : SystemAlertProviderProps) => {
   const [alertState, alertDispatch] = useReducer(systemAlertReducer, [])
 
-    useEffect(() => {
-    let timers:number[] = []; 
+  useEffect(() => {
+    let timers:NodeJS.Timeout[] = []; 
     alertState.forEach(el => {
       if (el.alertType === "warning" || el.alertType === "info") {
         const timeout = setTimeout(() => alertDispatch({type: "REMOVE-BY-ID", id: el.id}), 3000)
         timers.push(timeout)
       }
     })
-    // return () => timers.forEach((el) => clearTimeout(el))
+    // return () => timers.forEach((el) => clearTimeout(el)) //#TODO: Does it makes sense to cleanup this effect?
   }, [alertState])
   
   return (

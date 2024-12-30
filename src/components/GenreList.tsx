@@ -1,21 +1,18 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import useGenres from '../hooks/useGenres';
 import { HStack, List, ListItem, Image, Button, Heading } from '@chakra-ui/react';
 import resizeImg from '../utils/image-resize';
 import GenreListSkeleton from './GenreListSkeleton';
 import { SystemAlertContext } from './SystemAlert';
 import useFetchError from '../hooks/useFetchError';
+import useQueryStore from '../stores/queryStore';
 
-interface GenreListProps {
-  setGenre: (id:number) => void,
-  selectedGenre?: number
-}
-
-const GenreList = ({setGenre, selectedGenre} : GenreListProps) => {
+const GenreList = () => {
 
   const {data, error, isFetching} = useGenres();
-
-  const {dispatch: alertDispatcher} = useContext(SystemAlertContext)
+  const {dispatch: alertDispatcher} = useContext(SystemAlertContext);
+  const setGenreId = useQueryStore(s => s.setGenreId);
+  const selectedGenreId = useQueryStore(s => s.gameQuery.selectedGenreId);
 
   useFetchError({ error, alertDispatcher, info: "Genre selection will not be available", group: "GL"});
   
@@ -30,9 +27,9 @@ const GenreList = ({setGenre, selectedGenre} : GenreListProps) => {
               <Image alt='' role='presentation' objectFit='cover' boxSize={10} borderRadius={10} src={resizeImg(genre.image_background)}/>
               <Button 
                 whiteSpace="normal" textAlign='left'
-                fontWeight={selectedGenre === genre.id ? 'extrabold' : 'normal'}
+                fontWeight={selectedGenreId === genre.id ? 'extrabold' : 'normal'}
                 variant={'link'} fontSize={'lg'}
-                onClick={() => setGenre(genre.id)}
+                onClick={() => setGenreId(genre.id)}
                 >
                 {genre.name}
               </Button>

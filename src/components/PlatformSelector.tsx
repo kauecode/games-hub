@@ -5,21 +5,19 @@ import usePlatform from '../hooks/usePlatform'
 import { useContext } from 'react'
 import { SystemAlertContext } from './SystemAlert'
 import useFetchError from '../hooks/useFetchError'
+import useQueryStore from '../stores/queryStore'
 
-interface PlatformSelectorProps {
-  selectedPlatformId?: number,
-  setSelectedPlatform:  (id: number | undefined) => void
-}
+const PlatformSelector = () => {
+  
+  const selectedPlatformId = useQueryStore(s => s.gameQuery.selectedPlatformId);
+  const selectedPlatform = usePlatform(selectedPlatformId)
 
-const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform} : PlatformSelectorProps ) => {
+  const setPlatformId = useQueryStore(s => s.setPlatformId);
 
   const {data, error, isFetching} = usePlatforms();
-
   const {dispatch: alertDispatcher} = useContext(SystemAlertContext)
 
   useFetchError({ error, alertDispatcher, info: "Platform selection will not be available", group: "PS"});
-
-  const selectedPlatform = usePlatform(selectedPlatformId)
 
   if (error) return null
 
@@ -31,12 +29,12 @@ const PlatformSelector = ( {selectedPlatformId, setSelectedPlatform} : PlatformS
       </MenuButton>
       <MenuList>
           <MenuItem 
-            onClick={() => setSelectedPlatform(undefined)}>
+            onClick={() => setPlatformId(undefined)}>
             All Platforms
             </MenuItem>        
           {data?.results.map((platform) => 
             <MenuItem 
-              onClick={() => setSelectedPlatform(platform.id)} 
+              onClick={() => setPlatformId(platform.id)} 
               key={platform.id}>
               {platform.name}
             </MenuItem>

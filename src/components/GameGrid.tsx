@@ -3,19 +3,16 @@ import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
-import { GameQuery } from '../App';
 import React, { useContext, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useFetchError from '../hooks/useFetchError';
 import { SystemAlertContext } from './SystemAlert';
+import useQueryStore from '../stores/queryStore';
 
-interface GameGridProps {
-  gameQuery : GameQuery
-}
 
-const GameGrid = ({gameQuery} : GameGridProps) => {
+const GameGrid = () => {
 
-  const {data, error, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage} = useGames(gameQuery);
+  const {data, error, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage} = useGames();
   const skeletons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
   const {dispatch: alertDispatcher} = useContext(SystemAlertContext);
