@@ -1,8 +1,9 @@
-import { HStack, Link, Text, useColorMode } from '@chakra-ui/react'
+import { HStack, useColorMode } from '@chakra-ui/react'
 import ColorModeSwitch from './ColorModeSwitch'
 import SearchInput from './SearchInput'
 import Logo from './Logo'
 import useQueryStore from '../stores/queryStore'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
 
@@ -11,7 +12,7 @@ const NavBar = () => {
   return (
     <>
       <HStack padding="10px">
-        <Link href="/" aria-label="Home">
+        <Link to="/" aria-label="Home">
           <Logo color={colorMode === "dark" ? "#f5f5f5f0" : "#000000de"}/>
         </Link>
         <SearchInput/>

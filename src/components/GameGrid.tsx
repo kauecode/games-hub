@@ -7,8 +7,6 @@ import React, { useContext, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useFetchError from '../hooks/useFetchError';
 import { SystemAlertContext } from './SystemAlert';
-import useQueryStore from '../stores/queryStore';
-
 
 const GameGrid = () => {
 

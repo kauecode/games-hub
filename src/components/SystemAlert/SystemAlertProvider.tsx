@@ -10,7 +10,7 @@ export interface SystemAlertItem {
   info?: string,
   code?: string
 }
-export type GroupAlertOptions = "GL" | "PS" | "GG"; // GenreList | PlatformSelector | GamesGrid
+export type GroupAlertOptions = "GL" | "PS" | "GG" | "GP"; // GenreList | PlatformSelector | GamesGrid | GamePage
 export type AlertTypeOptions = "error" | "info" | "warning" | "loading" | "success";
 
 

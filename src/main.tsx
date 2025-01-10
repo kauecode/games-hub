@@ -31,9 +31,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      {/* <App /> */}
       <SystemAlertProvider>
         <RouterProvider router={router}></RouterProvider>
+        {/* <App /> */}
       </SystemAlertProvider>
       <ReactQueryDevtools />
     </ChakraProvider>

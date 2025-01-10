@@ -6,6 +6,7 @@ import resizeImg from '../utils/image-resize'
 import Emojis from './Emojis'
 import { motion } from "framer-motion";
 import { Game } from '../types/types'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface GameCardProps {
   game: Game
@@ -16,9 +17,8 @@ const MotionCard = motion(Card); // for Chakra components
 const GameCard = ({ game } : GameCardProps) => {
 
   return (
-    <MotionCard as={Link}
-      isExternal
-      href={'https://rawg.io/games/' + game.slug}
+    <MotionCard as={RouterLink}
+      to={'game/' + game.slug}
       _hover={{textDecoration: 'none'}}
       overflow='hidden' 
       width='100%'      
@@ -32,7 +32,6 @@ const GameCard = ({ game } : GameCardProps) => {
       }}
       // key={game}    
       variant={'filled'}>     
-      <VisuallyHidden>Opens in a new window</VisuallyHidden> 
       <Image
         src={resizeImg(game.background_image)} 
         height="180px"

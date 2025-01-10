@@ -10,7 +10,7 @@ const usePlatforms = () => {
 
     const query = useQuery<FetchRes<Platform>, AxiosError>({
       queryKey: ['platforms'],
-      queryFn: apiClient.getData,
+      queryFn: apiClient.getList,
       staleTime: 24 * 60 * 60 * 1000, // 24 Hrs
       initialData: platformsInitialData,
       keepPreviousData: true

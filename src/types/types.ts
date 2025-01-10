@@ -5,7 +5,12 @@ export interface Game {
   background_image: string,
   parent_platforms: { platform: Platform }[],
   metacritic: number,
-  rating_top: number
+  rating_top: number,
+}
+
+export interface FullGame extends Game {
+  description: string,
+  description_raw: string
 }
 
 export interface Platform {

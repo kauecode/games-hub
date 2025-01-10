@@ -14,28 +14,16 @@ const ErrorPage = () => {
     <>
       <SkipNavLink>Skip to content</SkipNavLink>
       <SystemAlert/>
-      <Grid 
-        minHeight={"100vh"}
-        templateAreas={{ base: `"nav" "main" "footer"`}}
-        templateColumns={{ base: '1fr' }}
-        >        
-        <GridItem area="nav">
-          <NavBar />
-        </GridItem>
+      <NavBar />
 
-        <GridItem as="main" area="main">
-          <VStack>
-          <Heading mt={2} fontSize={'2xl'}>Ooops...</Heading>         
-            {isRouteErrorResponse(error) 
-              ? <Text>...the page you looking for can't be found!</Text> 
-              : <Text>...we have a problem!</Text>}      
-          </VStack>            
-        </GridItem> 
+        <VStack p={5}>
+        <Heading m={2} fontSize={'4xl'}>Ooops...</Heading>         
+          {isRouteErrorResponse(error) 
+            ? <Text>...the page you looking for can't be found, looks like a <strong>404</strong>!</Text> 
+            : <Text>...we have a problem!</Text>}      
+        </VStack>            
 
-        <GridItem area="footer">
-          <Footer />
-        </GridItem>        
-      </Grid>   
+      <Footer />
     </>
   )
 }

@@ -10,7 +10,7 @@ const useGenres = () => {
     
     const query = useQuery<FetchRes<Genre>, AxiosError>({
       queryKey: ['genres'],
-      queryFn: apiClient.getData,
+      queryFn: apiClient.getList,
       staleTime: 24 * 60 * 60 * 1000, // 24 Hrs
       initialData: genreInitialData,
       keepPreviousData: true

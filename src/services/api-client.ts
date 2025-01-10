@@ -16,11 +16,18 @@ class APIclient<T> {
     this.endpoint = endpoint;
   }
 
-  getData = (config?:AxiosRequestConfig) => {
+  getList = (config?:AxiosRequestConfig) => {
     return axiosInstance
       .get<FetchRes<T>>(this.endpoint, config)
       .then(res => res.data)    
   }
+
+  getObj = (id: number | string) => {
+    return axiosInstance
+      .get<T>(this.endpoint + '/' + id)
+      .then(res => res.data)    
+  }
+
 }
 
 export default APIclient;
