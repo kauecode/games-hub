@@ -10,7 +10,7 @@ const Layout = () => {
     <>
       <SkipNavLink>Skip to content</SkipNavLink>
       <SystemAlert/>
-      <Container maxW={'1920px'}>
+      <Container maxW={'8xl'}>
         <NavBar />
         <Outlet />
       </Container>

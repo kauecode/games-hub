@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom';
-import { Image, Box, GridItem, Heading, Spinner, Text, Skeleton } from '@chakra-ui/react';
+import { Image, Box, GridItem, Heading, Spinner, Text, Skeleton, Link, Button } from '@chakra-ui/react';
 import useGame from '../hooks/useGame';
 import useFetchError from '../hooks/useFetchError';
 import { SystemAlertContext } from '../components/SystemAlert';
+import { RxOpenInNewWindow } from "react-icons/rx";
+
 
 const GameDetailPage = () => {
 
@@ -37,13 +39,21 @@ const GameDetailPage = () => {
           src={gameData?.background_image} 
           alt={'Cover image for ' + gameData?.name}/>
         }
-        <Heading pb={5} as={'h1'} size={{base: 'xl', lg: '3xl'}}>
+        <Heading pb={5} as={'h1'} size={{base: 'xl', lg: '2xl'}}>
           {gameData?.name}
         </Heading>
         {isLoading && <Box minHeight='70vh' textAlign='center'><Spinner size="lg"/></Box>}
         <Text>          
           {gameData?.description_raw}
         </Text>
+        <Button 
+          mt={5}
+          as={Link}
+          isExternal
+          rightIcon={<RxOpenInNewWindow />}
+          href={'https://rawg.io/games/' + gameData?.slug}>
+          See Full Details on&nbsp;<strong>RAWG</strong>
+        </Button>
       </GridItem>
     </>
   )

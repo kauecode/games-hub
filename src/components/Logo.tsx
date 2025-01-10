@@ -1,10 +1,13 @@
 import { Box } from '@chakra-ui/react'
 
 interface LogoProps {
-  color: string
+  color?: string,
+  size?: string,
+  display?: string,
+  padding?: number
 }
 
-const Logo = ({color} : LogoProps) => { 
+const Logo = ({color = "#000", size = "60px", display = "block", padding = 0} : LogoProps) => { 
 
   return (
     <Box
@@ -16,8 +19,9 @@ const Logo = ({color} : LogoProps) => {
       viewBox="0 0 425.2 425.2"
       aria-label="KaueCode Logo"
       role="img"
-      boxSize="60px"
-      padding={2}      
+      boxSize={size}
+      padding={padding}      
+      display={display}
       fill={color}
     >
       <g>

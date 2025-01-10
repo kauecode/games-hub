@@ -15,14 +15,12 @@ const ErrorPage = () => {
       <SkipNavLink>Skip to content</SkipNavLink>
       <SystemAlert/>
       <NavBar />
-
-        <VStack p={5}>
-        <Heading m={2} fontSize={'4xl'}>Ooops...</Heading>         
+      <VStack textAlign={'center'} p={5}>
+        <Heading m={2} size={{base: 'xl', lg: '2xl'}}>Ooops...</Heading>         
           {isRouteErrorResponse(error) 
-            ? <Text>...the page you looking for can't be found, looks like a <strong>404</strong>!</Text> 
+            ? <Text>...the page you are looking for can't be found, looks like a <strong>404</strong>!</Text> 
             : <Text>...we have a problem!</Text>}      
-        </VStack>            
-
+      </VStack>            
       <Footer />
     </>
   )
