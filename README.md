@@ -14,7 +14,8 @@ It is a *clone-ish* of the RAWG website, leverages their API to fetch game data.
 - **Typescript**
 - **React** - Custom Hooks, Contexts, Reducers, Custom Providers... exploring various patterns and techniques 🤔
 - **Zustand** - Because useContext is a pain and Redux is overkill, but there’s still a custom context provider here for future reference.
-- **ReactQuery** - Because we all like caching and keeps my API quota low.
+- **React Query** - Because we all like caching and keeps my API quota low.
+- **React Router**
 - **Axios**
 - **Chakra UI**
 - **Framer Motion**
