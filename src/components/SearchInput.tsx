@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { IoCloseCircle } from 'react-icons/io5'
 import useQueryStore from '../stores/queryStore'
+import { useNavigate } from 'react-router-dom'
 
 const SearchInput = () => {
 
@@ -11,10 +12,13 @@ const SearchInput = () => {
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  const navigate = useNavigate();
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchInputRef.current && searchInputRef.current.value) {
       setSearchText(searchInputRef.current.value)
+      navigate("/");
     }
   }
 
